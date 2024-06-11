@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+        <style>
+        .socket {
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 20px;
+}
+.socket-left-top {
+            width: 400px;
+            height: 400px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 20px;
+        }
+
+@media (min-width: 600px) {
+    .socket {
+        width: 400px;
+        height: 200px;
+        right: 0;
+        bottom: 0;
+        left: auto;
+        top: auto;
+        margin: 0;
+    }
+}
+
+        .hex-brick {
+        background: rgb(54, 52, 54);
+        width: 30px;
+        height: 17px;
+        position: absolute;
+        top: 5px;
+        animation-name: fade00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: fade00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        }
+
+        .h2 {
+        transform: rotate(60deg);
+        -webkit-transform: rotate(60deg);
+        }
+
+        .h3 {
+        transform: rotate(-60deg);
+        -webkit-transform: rotate(-60deg);
+        }
+
+        .gel {
+        height: 30px;
+        width: 30px;
+        transition: all .3s;
+        -webkit-transition: all .3s;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        }
+
+        .center-gel {
+        margin-left: -15px;
+        margin-top: -15px;
+        animation-name: pulse00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: pulse00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        }
+
+        .c1 {
+        margin-left: -47px;
+        margin-top: -15px;
+        }
+
+        .c2 {
+        margin-left: -31px;
+        margin-top: -43px;
+        }
+
+        .c3 {
+        margin-left: 1px;
+        margin-top: -43px;
+        }
+
+        .c4 {
+        margin-left: 17px;
+        margin-top: -15px;
+        }
+
+        .c5 {
+        margin-left: -31px;
+        margin-top: 13px;
+        }
+
+        .c6 {
+        margin-left: 1px;
+        margin-top: 13px;
+        }
+
+        .c7 {
+        margin-left: -63px;
+        margin-top: -43px;
+        }
+
+        .c8 {
+        margin-left: 33px;
+        margin-top: -43px;
+        }
+
+        .c9 {
+        margin-left: -15px;
+        margin-top: 41px;
+        }
+
+        .c10 {
+        margin-left: -63px;
+        margin-top: 13px;
+        }
+
+        .c11 {
+        margin-left: 33px;
+        margin-top: 13px;
+        }
+
+        .c12 {
+        margin-left: -15px;
+        margin-top: -71px;
+        }
+
+        .c13 {
+        margin-left: -47px;
+        margin-top: -71px;
+        }
+
+        .c14 {
+        margin-left: 17px;
+        margin-top: -71px;
+        }
+
+        .c15 {
+        margin-left: -47px;
+        margin-top: 41px;
+        }
+
+        .c16 {
+        margin-left: 17px;
+        margin-top: 41px;
+        }
+
+        .c17 {
+        margin-left: -79px;
+        margin-top: -15px;
+        }
+
+        .c18 {
+        margin-left: 49px;
+        margin-top: -15px;
+        }
+
+        .c19 {
+        margin-left: -63px;
+        margin-top: -99px;
+        }
+
+        .c20 {
+        margin-left: 33px;
+        margin-top: -99px;
+        }
+
+        .c21 {
+        margin-left: 1px;
+        margin-top: -99px;
+        }
+
+        .c22 {
+        margin-left: -31px;
+        margin-top: -99px;
+        }
+
+        .c23 {
+        margin-left: -63px;
+        margin-top: 69px;
+        }
+
+        .c24 {
+        margin-left: 33px;
+        margin-top: 69px;
+        }
+
+        .c25 {
+        margin-left: 1px;
+        margin-top: 69px;
+        }
+
+        .c26 {
+        margin-left: -31px;
+        margin-top: 69px;
+        }
+
+        .c27 {
+        margin-left: -79px;
+        margin-top: -15px;
+        }
+
+        .c28 {
+        margin-left: -95px;
+        margin-top: -43px;
+        }
+
+        .c29 {
+        margin-left: -95px;
+        margin-top: 13px;
+        }
+
+        .c30 {
+        margin-left: 49px;
+        margin-top: 41px;
+        }
+
+        .c31 {
+        margin-left: -79px;
+        margin-top: -71px;
+        }
+
+        .c32 {
+        margin-left: -111px;
+        margin-top: -15px;
+        }
+
+        .c33 {
+        margin-left: 65px;
+        margin-top: -43px;
+        }
+
+        .c34 {
+        margin-left: 65px;
+        margin-top: 13px;
+        }
+
+        .c35 {
+        margin-left: -79px;
+        margin-top: 41px;
+        }
+
+        .c36 {
+        margin-left: 49px;
+        margin-top: -71px;
+        }
+
+        .c37 {
+        margin-left: 81px;
+        margin-top: -15px;
+        }
+
+        .r1 {
+        animation-name: pulse00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .2s;
+        -webkit-animation-name: pulse00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .2s;
+        }
+
+        .r2 {
+        animation-name: pulse00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .4s;
+        -webkit-animation-name: pulse00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .4s;
+        }
+
+        .r3 {
+        animation-name: pulse00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .6s;
+        -webkit-animation-name: pulse00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .6s;
+        }
+
+        .r1 > .hex-brick {
+        animation-name: fade00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .2s;
+        -webkit-animation-name: fade00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .2s;
+        }
+
+        .r2 > .hex-brick {
+        animation-name: fade00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .4s;
+        -webkit-animation-name: fade00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .4s;
+        }
+
+        .r3 > .hex-brick {
+        animation-name: fade00;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-delay: .6s;
+        -webkit-animation-name: fade00;
+        -webkit-animation-duration: 2s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-delay: .6s;
+        }
+
+        @keyframes pulse00 {
+        0% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+
+        50% {
+            -webkit-transform: scale(0.01);
+            transform: scale(0.01);
+        }
+
+        100% {
+            -webkit-transform: scale(1);
+            transform: scale(1);
+        }
+        }
+
+        @keyframes fade00 {
+        0% {
+            background: rgb(58, 52, 58);
+        }
+
+        50% {
+            background: rgb(235, 232, 232);
+        }
+
+        100% {
+            background: rgb(33, 32, 33);
+        }
+        }
+
+        body {
+            background-color: #f0f0f0; /* Light grey background color */
+            color: #333333; /* Text color */
+            font-family: 'Poppins', sans-serif; /* Font style */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+        }
+        form {
+    background-color: transparent; /* Make the form background transparent */
+    padding: 25px; /* Padding inside the form */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: none; /* Remove the box shadow */
+    max-width: 450px; /* Maximum width of the form */
+    width: 100%; /* Full width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+        label {
+            display: block; /* Block display to make it occupy full width */
+            margin-bottom: 10px; /* Space below the label */
+            font-size: 16px; /* Font size */
+            font-weight: 600; /* Font weight */
+        }
+        input[type="text"], input[type="submit"] {
+            width: 100%; /* Full width of its container */
+            padding: 12px; /* Padding inside the input fields */
+            margin-bottom: 20px; /* Space below the input fields */
+            border-radius: 5px; /* Rounded corners */
+            border: 1px solid #ccc; /* Border style */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            font-size: 14px; /* Font size */
+        }
+        input[type="submit"] {
+            background-color: rgb(49, 45, 49); /* Background color for the submit button */
+            color: #ffffff; /* Text color for the submit button */
+            font-size: 18px; /* Font size */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-weight: 600; /* Font weight */
+            transition: background-color 0.3s; /* Transition effect for background color */
+        }
+        input[type="submit"]:hover {
+            background: rgb(56, 53, 56); /* Background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <form action="/add_category" method="post">        
+        <h1>Add Category</h1>
+        <div class="socket-left-top">
+			<div class="gel center-gel">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c1 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c2 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c3 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c4 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c5 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c6 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c7 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c8 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c9 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c10 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c11 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c12 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c13 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c14 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c15 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c16 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c17 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c18 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c19 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c20 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c21 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c22 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c23 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c24 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c25 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c26 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c28 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c29 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c30 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c31 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c32 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c33 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c34 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c35 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c36 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c37 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+		</div>
+		<div class="socket">
+			<div class="gel center-gel">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c1 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c2 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c3 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c4 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c5 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c6 r1">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c7 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+			<div class="gel c8 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c9 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c10 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c11 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c12 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c13 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c14 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c15 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c16 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c17 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c18 r2">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c19 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c20 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c21 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c22 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c23 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c24 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c25 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c26 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c28 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c29 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c30 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c31 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c32 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c33 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c34 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c35 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c36 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			<div class="gel c37 r3">
+				<div class="hex-brick h1"></div>
+				<div class="hex-brick h2"></div>
+				<div class="hex-brick h3"></div>
+			</div>
+			
+		</div>
+	
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br><br>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>
+
+
+

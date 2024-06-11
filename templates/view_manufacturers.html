@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Manufacturers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='viewmanu.css') }}">
+</head>
+<body>
+    <h1>Manufacturers</h1>
+    <div>
+        <input type="text" id="searchInput" onkeyup="searchManufacturers()" placeholder="Search for manufacturers...">
+    </div>
+    <table id="manufacturersTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
+                <th>Product Name</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for manufacturer in manufacturers %}
+            <tr>
+                <td>{{ manufacturer[1] }}</td>
+                <td>{{ manufacturer[2] }}</td>
+                <td>{{ manufacturer[3] }}</td>
+                <td>{{ manufacturer[4] }}</td>
+                <td>{{ manufacturer[5] }}</td>
+                <td>{{ manufacturer[6] }}</td>
+                <td>{{ manufacturer[7] }}</td>
+                <td>{{ manufacturer[8] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function searchManufacturers() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("manufacturersTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those that don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0]; // Change index to match the column you want to search (0 for name)
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
